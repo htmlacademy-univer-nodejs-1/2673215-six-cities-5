@@ -19,8 +19,8 @@ DB_USER=admin — Имя пользователя для подключения 
 DB_PASSWORD=password — Пароль для подключения к БД
 DB_PORT=27017 — Порт для подключения к БД (MongoDB)
 DB_NAME=six-cities — Название БД (MongoDB)
-UPLOAD_DIRECTORY=upload — Директория для загружаемых файлов
 JWT_SECRET=секретный_ключ — Секретный ключ для подписи JWT токенов
+HOST=localhost — Хост для запуска сервиса
 
 ### Сценарии
 

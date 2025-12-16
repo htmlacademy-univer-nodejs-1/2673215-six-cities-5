@@ -1,7 +1,7 @@
 import { CityName, HousingType, Amenity, Coordinates, getAllCityNames, getAllHousingTypes, getAllAmenities } from '../../../types/index.js';
-import { ArrayMaxSize, ArrayMinSize, IsArray, IsBoolean, IsDateString, IsEnum, IsInt, IsNumber, IsString, Max, MaxLength, Min, MinLength, ValidateNested } from 'class-validator';
+import { ArrayMaxSize, ArrayMinSize, IsArray, IsBoolean, IsDateString, IsEnum, IsInt, IsNumber, IsOptional, IsString, Max, MaxLength, Min, MinLength, ValidateNested } from 'class-validator';
 import { CreateOfferValidationMessage } from './create-or-update-offer.messages.js';
-import { MAX_DESCRIPTION_LENGTH, MAX_GUESTS, MAX_PRICE, MAX_ROOMS, MAX_TITLE_LENGTH, MIN_DESCRIPTION_LENGTH, MIN_GUESTS, MIN_PRICE, MIN_ROOMS, MIN_TITLE_LENGTH, OFFER_IMAGES_COUNT, } from '../../../constants/index.js';
+import { DEFAULT_RATING, MAX_DESCRIPTION_LENGTH, MAX_GUESTS, MAX_PRICE, MAX_RATING, MAX_ROOMS, MAX_TITLE_LENGTH, MIN_DESCRIPTION_LENGTH, MIN_GUESTS, MIN_PRICE, MIN_RATING, MIN_ROOMS, MIN_TITLE_LENGTH, OFFER_IMAGES_COUNT, } from '../../../constants/index.js';
 import { Type } from 'class-transformer';
 
 class CoordinatesDto {
@@ -56,6 +56,13 @@ export class CreateOfferDto {
   @Min(MIN_PRICE, { message: CreateOfferValidationMessage.price.minValue })
   @Max(MAX_PRICE, { message: CreateOfferValidationMessage.price.maxValue })
   public price: number;
+
+  @IsOptional()
+  @IsNumber({}, { message: CreateOfferValidationMessage.rating.invalidFormat })
+  @Min(MIN_RATING, { message: CreateOfferValidationMessage.rating.minValue })
+  @Max(MAX_RATING, { message: CreateOfferValidationMessage.rating.minValue })
+  public rating?: number = DEFAULT_RATING;
+
 
   @IsArray({ message: CreateOfferValidationMessage.amenities.invalidFormat })
   @IsEnum(getAllAmenities(), { each: true, message: CreateOfferValidationMessage.amenities.invalidFormat })

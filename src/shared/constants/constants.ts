@@ -14,6 +14,7 @@ export const OFFER_IMAGES_COUNT = 6;
 export const MIN_RATING = 0;
 export const MAX_RATING = 5;
 export const RATING_DECIMAL_DIGITS = 1;
+export const DEFAULT_RATING = 0;
 
 export const MIN_ROOMS = 1;
 export const MAX_ROOMS = 8;
@@ -51,9 +52,6 @@ export const RETRY_TIMEOUT = 1000;
 
 export const MIN_NAME_LENGTH = 1;
 export const MAX_NAME_LENGTH = 15;
-
-// ToDo
-export const DEFAULT_AVATAR_PATH = '';
 
 export const MIN_TITLE_LENGTH = 10;
 export const MAX_TITLE_LENGTH = 100;

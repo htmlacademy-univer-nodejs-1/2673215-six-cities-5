@@ -2,14 +2,12 @@
 ## Получить список объявлений
 GET http://localhost:5001/offers HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imtla3MxMDAwQGh0bWxhY2FkZW15LnJ1IiwibmFtZSI6Iktla3MxIiwiaWQiOiI2OTM1NjE2NmNhNWJmNWE1OTUyMDgzMmUiLCJpYXQiOjE3NjUyMDg1NzgsImV4cCI6MTc2NTM4MTM3OH0.6ywgK12ZA38FkOTTTCqsRBcv36WQZOTEGycVlZK8Dis
 
 ###
 
 ## Получить определенное количество объявлений
 GET http://localhost:5001/offers?limit=5 HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imtla3MxMDAwQGh0bWxhY2FkZW15LnJ1IiwibmFtZSI6Iktla3MxIiwiaWQiOiI2OTM1NjE2NmNhNWJmNWE1OTUyMDgzMmUiLCJpYXQiOjE3NjUyMDc2NTMsImV4cCI6MTc2NTM4MDQ1M30.lyD7ZEBp9p_o8Te4Erhcch8QqrRxkCeRkgaqPtIGZfI
 
 ###
 
@@ -54,7 +52,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imtla3MxMDAwQGh0bWxhY2FkZ
 ## Получить детальную информацию об объявлении
 GET http://localhost:5001/offers/6934c416ad2be7374a44af3f HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imtla3MxMDAwQGh0bWxhY2FkZW15LnJ1IiwibmFtZSI6Iktla3MxIiwiaWQiOiI2OTM1NjE2NmNhNWJmNWE1OTUyMDgzMmUiLCJpYXQiOjE3NjUyMDg1NzgsImV4cCI6MTc2NTM4MTM3OH0.6ywgK12ZA38FkOTTTCqsRBcv36WQZOTEGycVlZK8Dis
 
 ###
 
@@ -82,18 +79,16 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imtla3MxMDAwQGh0bWxhY2FkZ
 ## Получить премиальные объявления для Парижа
 GET http://localhost:5001/offers/premium/Paris HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imtla3MxMDAwQGh0bWxhY2FkZW15LnJ1IiwibmFtZSI6Iktla3MxIiwiaWQiOiI2OTM1NjE2NmNhNWJmNWE1OTUyMDgzMmUiLCJpYXQiOjE3NjUyMDg1NzgsImV4cCI6MTc2NTM4MTM3OH0.6ywgK12ZA38FkOTTTCqsRBcv36WQZOTEGycVlZK8Dis
 
 ###
 
 ## Получить премиальные объявления для Амстердама с лимитом
 GET http://localhost:5001/offers/premium/Amsterdam?limit=2 HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imtla3MxMDAwQGh0bWxhY2FkZW15LnJ1IiwibmFtZSI6Iktla3MxIiwiaWQiOiI2OTM1NjE2NmNhNWJmNWE1OTUyMDgzMmUiLCJpYXQiOjE3NjUyMDc2NTMsImV4cCI6MTc2NTM4MDQ1M30.lyD7ZEBp9p_o8Te4Erhcch8QqrRxkCeRkgaqPtIGZfI
 
 ###
 
-## Список комментариев к объявлению
+## Получить список комментариев к объявлению
 GET http://localhost:5001/offers/68ee445e3e27bc0a0640b1be/comments HTTP/1.1
 
 ###

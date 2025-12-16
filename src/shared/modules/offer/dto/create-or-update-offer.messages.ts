@@ -1,4 +1,4 @@
-import { MAX_DESCRIPTION_LENGTH, MAX_GUESTS, MAX_PRICE, MAX_ROOMS, MAX_TITLE_LENGTH, MIN_DESCRIPTION_LENGTH, MIN_GUESTS, MIN_PRICE, MIN_ROOMS, MIN_TITLE_LENGTH, OFFER_IMAGES_COUNT, } from '../../../constants/index.js';
+import { MAX_DESCRIPTION_LENGTH, MAX_GUESTS, MAX_PRICE, MAX_RATING, MAX_ROOMS, MAX_TITLE_LENGTH, MIN_DESCRIPTION_LENGTH, MIN_GUESTS, MIN_PRICE, MIN_RATING, MIN_ROOMS, MIN_TITLE_LENGTH, OFFER_IMAGES_COUNT, } from '../../../constants/index.js';
 
 export const CreateOfferValidationMessage = {
   title: {
@@ -46,6 +46,11 @@ export const CreateOfferValidationMessage = {
   },
   amenities: {
     invalidFormat: 'Удобства должны быть массивом допустимых значений',
+  },
+  rating: {
+    invalidFormat: 'Рейтинг должен быть числом',
+    minValue: `Рейтинг не может быть меньше ${MIN_RATING}`,
+    maxValue: `Рейтинг не может превышать ${MAX_RATING}`,
   },
   author: {
     invalidId: 'ID автора должен быть корректным MongoDB ObjectId',
