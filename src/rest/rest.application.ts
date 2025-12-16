@@ -4,9 +4,9 @@ import { inject, injectable } from 'inversify';
 import { Component } from '../shared/types/index.js';
 import express, { Express } from 'express';
 import { DatabaseClient } from '../shared/libs/database-client/index.js';
-import { getMongoURI } from '../shared/helpers/index.js';
-import { Controller, ExceptionFilter } from '../shared/libs/rest/index.js';
-import { ParseTokenMiddleware } from '../shared/libs/rest/middleware/parse-token.middleware.js';
+import { getFullServerPath, getMongoURI } from '../shared/helpers/index.js';
+import { Controller, ExceptionFilter, ParseTokenMiddleware } from '../shared/libs/rest/index.js';
+import cors from 'cors';
 
 @injectable()
 export class RestApplication {
@@ -22,6 +22,8 @@ export class RestApplication {
     @inject(Component.CommentController) private readonly commentController: Controller,
     @inject(Component.ExceptionFilter) private readonly appExceptionFilter: ExceptionFilter,
     @inject(Component.AuthExceptionFilter) private readonly authExceptionFilter: ExceptionFilter,
+    @inject(Component.HttpExceptionFilter) private readonly httpExceptionFilter: ExceptionFilter,
+    @inject(Component.ValidationExceptionFilter) private readonly validationExceptionFilter: ExceptionFilter,
   ) {
     this.server = express();
   }
@@ -54,15 +56,14 @@ export class RestApplication {
     const authenticateMiddleware = new ParseTokenMiddleware(this.config.get('JWT_SECRET'));
 
     this.server.use(express.json());
-    this.server.use(
-      '/upload',
-      express.static(this.config.get('UPLOAD_DIRECTORY'))
-    );
     this.server.use(authenticateMiddleware.execute.bind(authenticateMiddleware));
+    this.server.use(cors());
   }
 
   private async _initExceptionFilters() {
     this.server.use(this.authExceptionFilter.catch.bind(this.authExceptionFilter));
+    this.server.use(this.validationExceptionFilter.catch.bind(this.validationExceptionFilter));
+    this.server.use(this.httpExceptionFilter.catch.bind(this.httpExceptionFilter));
     this.server.use(this.appExceptionFilter.catch.bind(this.appExceptionFilter));
   }
 
@@ -87,6 +88,6 @@ export class RestApplication {
 
     this.logger.info('Инициализации сервера…');
     await this._initServer();
-    this.logger.info(`🚀🚀🚀 Сервер запущен на http://localhost:${this.config.get('PORT')}.`);
+    this.logger.info(`🚀🚀🚀 Сервер запущен на ${getFullServerPath(this.config.get('HOST'), this.config.get('PORT'))}.`);
   }
 }
