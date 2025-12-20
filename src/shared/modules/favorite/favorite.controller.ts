@@ -5,9 +5,9 @@ import { Logger } from '../../libs/logger/index.js';
 import { Component } from '../../types/index.js';
 import { FavoriteService } from './favorite-service.interface.js';
 import { fillDTO } from '../../helpers/index.js';
-import { OfferShortRdo } from '../offer/rdo/offer-short.rdo.js';
 import { StatusCodes } from 'http-status-codes';
 import { OfferService } from '../offer/offer-service.interface.js';
+import { OfferRdo } from '../offer/index.js';
 
 @injectable()
 export class FavoriteController extends BaseController {
@@ -54,7 +54,7 @@ export class FavoriteController extends BaseController {
 
     const userId = tokenPayload.id;
     const favorites = await this.favoriteService.findByUser(userId);
-    const responseData = fillDTO(OfferShortRdo, favorites);
+    const responseData = fillDTO(OfferRdo, favorites);
     this.ok(res, responseData);
   }
 
@@ -76,7 +76,9 @@ export class FavoriteController extends BaseController {
     }
 
     await this.favoriteService.create(userId, offerId);
-    this.ok(res, { message: 'Объявление добавлено в избранное.' });
+    const offer = await this.offerService.findById(offerId);
+    const responseData = fillDTO(OfferRdo, offer);
+    this.ok(res, responseData);
   }
 
   public async delete(
@@ -96,7 +98,9 @@ export class FavoriteController extends BaseController {
       );
     }
 
-    const favorite = await this.favoriteService.delete(userId, offerId);
-    this.noContent(res, favorite);
+    await this.favoriteService.delete(userId, offerId);
+    const offer = await this.offerService.findById(offerId);
+    const responseData = fillDTO(OfferRdo, offer);
+    this.ok(res, responseData);
   }
 }
