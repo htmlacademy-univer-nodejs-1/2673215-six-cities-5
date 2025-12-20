@@ -1,5 +1,5 @@
 import { CityName, HousingType, Amenity, Coordinates, getAllCityNames, getAllHousingTypes, getAllAmenities } from '../../../types/index.js';
-import { ArrayMaxSize, ArrayMinSize, IsArray, IsBoolean, IsDateString, IsEnum, IsInt, IsNumber, IsOptional, IsString, Max, MaxLength, Min, MinLength, ValidateNested } from 'class-validator';
+import { ArrayMaxSize, ArrayMinSize, IsArray, IsBoolean, IsEnum, IsInt, IsNumber, IsOptional, IsString, Max, MaxLength, Min, MinLength, ValidateNested } from 'class-validator';
 import { CreateOfferValidationMessage } from './create-or-update-offer.messages.js';
 import { MAX_DESCRIPTION_LENGTH, MAX_GUESTS, MAX_PRICE, MAX_ROOMS, MAX_TITLE_LENGTH, MIN_DESCRIPTION_LENGTH, MIN_GUESTS, MIN_PRICE, MIN_ROOMS, MIN_TITLE_LENGTH, OFFER_IMAGES_COUNT, } from '../../../constants/index.js';
 import { Type } from 'class-transformer';
@@ -22,10 +22,6 @@ export class UpdateOfferDto {
   @MinLength(MIN_DESCRIPTION_LENGTH, { message: CreateOfferValidationMessage.description.minLength })
   @MaxLength(MAX_DESCRIPTION_LENGTH, { message: CreateOfferValidationMessage.description.maxLength })
   public description?: string;
-
-  @IsOptional()
-  @IsDateString({}, { message: CreateOfferValidationMessage.postDate.invalidFormat })
-  public postDate?: Date;
 
   @IsOptional()
   @IsEnum(getAllCityNames(), { message: CreateOfferValidationMessage.city.invalid })

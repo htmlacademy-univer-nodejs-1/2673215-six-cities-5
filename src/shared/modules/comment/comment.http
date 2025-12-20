@@ -8,8 +8,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imtla3MxMDAwQGh0bWxhY2FkZ
 {
   "text": "Как обстоят дела с мяу мяу мяу мяяяяу",
   "rating": 4.3,
-  "postDate": "1999-09-19T00:00:00.000Z",
-  "offerId": "68ee445e3e27bc0a0640b1be"
+  "postDate": "1999-09-19T00:00:00.000Z"
 }
 
 ###

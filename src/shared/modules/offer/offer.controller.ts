@@ -6,7 +6,6 @@ import { Component, isCityName } from '../../types/index.js';
 import { OfferService } from './offer-service.interface.js';
 import { fillDTO } from '../../helpers/index.js';
 import { OfferRdo } from './rdo/offer.rdo.js';
-import { OfferShortRdo } from './rdo/offer-short.rdo.js';
 import { CreateOfferRequest } from './create-offer-request.type.js';
 import { ParamOfferId } from './type/param-offerid.type.js';
 import { CommentRdo, CommentService } from '../comment/index.js';
@@ -84,7 +83,7 @@ export class OfferController extends BaseController {
     const userId = tokenPayload?.id;
     const offers = await this.offerService.find(userId, limit);
 
-    this.ok(res, fillDTO(OfferShortRdo, offers));
+    this.ok(res, fillDTO(OfferRdo, offers));
   }
 
   public async create(
